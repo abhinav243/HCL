@@ -1,0 +1,29 @@
+Draft
+=====
+Done as a SpringBoot Project with PostgreSQL as DB
+
+Question2Model.java ->	model file
+			commented create script for db
+			commented sequence
+
+Question2Repository ->	repository file
+
+Question2.java	    ->	controller file
+			consists of post request "http://localhost:8762/sftp/download"
+			the post request should be run every 15min by cron job (after ensuring the previous request is completed)
+
+WorkerThread.java   ->	parameters -> localFileName and SessionFactory(to use same session factory for one request having multiple files)
+			saves all the contents of file in the db in one step.
+
+
+Details //these details are also present as a comment in the files
+=======
+	
+files updated after *startDateTime* are stored in the db. *startDateTime* is updated after every request
+*formatter* is used for LocalDateTime format. It can be updated as per need
+*OutputStream* is used to copy contents of the file locally.
+using *Runtime.getRuntime().availableProcessors()* to get processors( 8 ) and creating a fixedThreadPool for optimization
+the local file path is passed to *WorkerThread* to copy the contents to DB
+
+
+
